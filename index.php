@@ -7,7 +7,7 @@
         $firstname = $_POST["FirstNameToSearch"]; 
          
         #Connect to Database 
-        $con = mysqli_connect("us-cdbr-iron-east-02.cleardb.net","bc2c68b39a3b16","dae20f62", "mytestdatabase"); 
+        $con = mysqli_connect("us-cdbr-iron-east-02.cleardb.net","bc2c68b39a3b16","dae20f62", "heroku_59fcda6bcf94c0f"); 
          
         #Check connection 
         if (mysqli_connect_errno()) { 
