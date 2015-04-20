@@ -23,21 +23,32 @@
 			$last_id = 0;
 			$list_num = 0;
 			$level = 0;
+			$user_x = 0;
+			$user_y = 0;
 			if(isset($_POST["last_id"]) && isset($_POST["list_num"]) && isset($_POST["level"])) {
 				$last_id = $_POST["last_id"];
 				$list_num = $_POST["list_num"];
 				$level = $_POST["level"];
+				if($level == 2) {
+					if(isset($_POST["user_x"]) && isset($_POST["user_y"])) {
+						$user_x = $_POST["user_x"];
+						$user_y = $_POST["user_y"];
+					} else {
+						echo json_encode(array("status" => "false", "message" => "invalid post coordinates", "result" => ""));
+						exit();
+					}
+				} 
 			} else {
 				echo json_encode(array("status" => "false", "message" => "invalid post parameters", "result" => ""));
 				exit();
 			}
 			$blog = new BlogModel($list_num, null, null, null, null, null, null, null, null, null);
-			$j = $blog->db_view($last_id, $list_num, $level);
+			$j = $blog->db_view($last_id, $list_num, $level, $user_x, $user_y);
 			if($j >= 0) {
 			//transfer to json
 				$arr = array();
 				for($i = 0; $i < $j; $i++) {
-					$arr[$i] = array("mb_id"       => "".$blog->getBlogId($i)."",
+					$arr[$i] = array("mb_id"       => 	$blog->getBlogId($i),
 									 "mb_uaccount" => "".$blog->getBlogUaccount($i)."",
 									 "mb_content"  => "".$blog->getBlogContent($i)."",
 									 "mb_time"     => "".$blog->getBlogTime($i)."",
@@ -45,10 +56,10 @@
 									 "mb_degree"   => "".$blog->getBlogDegree($i)."",
 									 "mb_weather"  => "".$blog->getBlogWeather($i)."",
 									 "mb_level"    => "".$blog->getBlogLevel($i)."",
-									 "mb_x"        => "".$blog->getBlogX($i)."",
+									 "mb_x"        => 	$blog->getBlogX($i),
 									 "mb_y"		   => "".$blog->getBlogY($i)."",
-									 "mb_uname"    => "".$blog->getBlogUname($i).""  
-								// , "mb_num" 	   => "".$blog->getBlogNum($i).""
+									 "mb_uname"    => "".$blog->getBlogUname($i)."",  
+								     "mb_num" 	   =>	 $blog->getBlogNum($i)
 					);
 				}
 				$res = array("status" => "true",

@@ -60,13 +60,20 @@
 				$user = new UserModel($account, $passwd, null, null, null);
 				if($user->db_auth())
 				{
+					session_start();
+					$sid = session_id();
+					$_SESSION["user"] = $user;
 					$res = array("status" => "true",
 							"message" => "login successfully!",
 							"result" => array("user_account" => "".$user->GetUsrAcount()."",
 											  "user_name" => "".$user->GetUsrName()."",
 											  "user_email" => "".$user->GetUsrEmail()."",
-											  "user_pic" => "".$user->GetUsrPic().""));
+											  "user_pic" => "".$user->GetUsrPic()."",
+											  "user_sid" => "".$sid.""
+							));
 					$jstr = json_encode($res);
+					
+					
 					echo $jstr;
 				}
 			}
@@ -76,6 +83,11 @@
 		}
 		
 		function logoutAction(){
-			
+			session_start();
+			$_SESSION["user"] = null;
+			session_destroy();
+			echo json_encode(array("status" => "true",
+					"message" => "logout",
+					"result" => ""));
 		}
 	}

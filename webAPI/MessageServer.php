@@ -24,8 +24,8 @@
 		function ListAction() {
 			$usr_account = null;
 				
-			if(isset($_POST["usr_account"])) {
-				$usr_account = $_POST["usr_account"];
+			if(isset($_POST["user_account"])) {
+				$usr_account = $_POST["user_account"];
 			} else {
 				echo json_encode(array("status" => "false", "message" => "invalid post parameters", "result" => ""));
 				exit();
@@ -63,12 +63,13 @@
 			}
 		}
 		
+		
 		function MessagesAction(){
 			$usr_account = null;
 			$friend_account = null;
 			
-			if(isset($_POST["usr_account"]) && isset($_POST["friend_account"])) {
-				$usr_account = $_POST["usr_account"];
+			if(isset($_POST["user_account"]) && isset($_POST["friend_account"])) {
+				$usr_account = $_POST["user_account"];
 				$friend_account = $_POST["friend_account"];
 			} else {
 				echo json_encode(array("status" => "false", "message" => "invalid post parameters", "result" => ""));
@@ -105,11 +106,11 @@
 		
 		function SendAction() {
 			
-			if(isset($_POST["msg_from"]) && isset($_POST["msg_to"]) && isset($_POST["msg_content"]) && isset($_POST["msg_time"])) {
-				$from = $_POST["msg_from"];
-				$to = $_POST["msg_to"];
-				$content = $_POST["msg_content"];
-				$time = $_POST["msg_time"];
+			if(isset($_POST["message_from"]) && isset($_POST["message_to"]) && isset($_POST["message_content"]) && isset($_POST["message_time"])) {
+				$from = $_POST["message_from"];
+				$to = $_POST["message_to"];
+				$content = $_POST["message_content"];
+				$time = $_POST["message_time"];
 			
 			
 				$message = new MessageModel($from, $to, $content, $time);
@@ -131,14 +132,14 @@
 					"result" => ""));
 			}
 			
-		}
+		
 		
 		function UpdateAction() {
 			
 			$usr_account = null;
 			
-			if(isset($_POST["usr_account"])) {
-				$usr_account = $_POST["usr_account"];
+			if(isset($_POST["user_account"])) {
+				$usr_account = $_POST["user_account"];
 			} else {
 				echo json_encode(array("status" => "false", "message" => "invalid post parameters", "result" => ""));
 				exit();
@@ -161,3 +162,5 @@
 				}
 			}
 	}
+	
+}

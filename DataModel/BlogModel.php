@@ -63,7 +63,7 @@
 			}
 			
 			
-		function sql_make($last_id, $list_num, $level) {
+		function sql_make($last_id, $list_num, $level, $user_x = 0, $user_y = 0) {
 			$sql = null;
 			switch ($level) {
 				case "1": {
@@ -110,8 +110,8 @@
 			
 
 		
-		function db_view($last_id, $list_num, $level) {
-			$sql = $this->sql_make($last_id, $list_num, $level);
+		function db_view($last_id, $list_num, $level, $user_x = 0, $user_y = 0) {
+			$sql = $this->sql_make($last_id, $list_num, $level, $user_x, $user_y);
 			
 			if ($sql == -3) return $sql;
 			
@@ -136,10 +136,10 @@
 					$this->setBlogY($j, $row[9]);
 					$this->setBlogUname($j, $row[10]);
 // the number of comments of each blog 					
-//					$sql_blog_num = "SELECT count(*) FROM comments WHERE comt_mid='".$this->getBlogId($j)."'";
-//					$result_blog_num = $manul->db_query($sql_blog_num);
-//					$row_blog_num = $result_blog_num->fetch_array();
-//					$this->setBlogNum($j, $row_blog_num);
+					$sql_blog_num = "SELECT count(*) FROM comments WHERE comt_mid='".$this->getBlogId($j)."'";
+					$result_blog_num = $manul->db_query($sql_blog_num);
+					$row_blog_num = $result_blog_num->fetch_array();
+					$this->setBlogNum($j, $row_blog_num[0]);
 					$j++;
 					}
 				// use j 
