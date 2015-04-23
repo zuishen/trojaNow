@@ -12,7 +12,7 @@
 			switch ($this->action)
 			{
 				case 'list': {$this->ListAction(); break;}
-				case 'post': {$this->PostAction(); break;}
+				case 'new': {$this->PostAction(); break;}
 				default: echo json_encode(array("status" => "false",
 				"message" => "invalid action",
 				"result" => ""));;

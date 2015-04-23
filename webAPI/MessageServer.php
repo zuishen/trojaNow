@@ -13,8 +13,8 @@
 			{
 				case 'list': {$this->ListAction(); break;}
 				case 'messages': {$this->MessagesAction(); break;}
-				case 'send':	{$this->SendAction(); break;}
-				case 'update':	{$this->UpdateAction(); break;}
+				case 'new':	{$this->SendAction(); break;}
+				case 'notification':	{$this->UpdateAction(); break;}
 				default: echo json_encode(array("status" => "false",
 				"message" => "invalid action",
 				"result" => ""));;
