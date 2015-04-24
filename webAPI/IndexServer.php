@@ -53,7 +53,7 @@
 		
 		
 		function loginAction() {
-			echo $_POST["user_account"];
+//			echo $_POST["user_account"];
 			if(isset($_POST["user_account"]) && isset($_POST["user_pwd"]) ) {
 				$account = $_POST["user_account"];
 				$passwd = $_POST["user_pwd"];
