@@ -78,8 +78,8 @@
 					echo $jstr;
 				}
 				else echo json_encode(array("status" => "false",
-					"message" => “wrong account & password",
-					"result" => ""));
+						"message" => "wrong account & password",
+						"result" => ""));
 			}
 			else echo json_encode(array("status" => "false",
 					"message" => "invalid account & password",
