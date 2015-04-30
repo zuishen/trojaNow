@@ -76,7 +76,7 @@
 			//			$sql_all = null;
 			switch ($add_delete) {
 				case "add": {
-					$sql = "INSERT INTO friend_lists VALUES('".$user_account."', '".$friend_account."')";   //list your follows
+					$sql = "INSERT INTO friend_lists VALUES('".$friend_account."', '".$user_account."')";   //list your follows
 					$db = new createdb(SQL_ADDR, USERNAME, USERPASSWD, DATABASE);
 					$mysqli = $db->db_connect();
 					$manul = new dbManul($mysqli);
