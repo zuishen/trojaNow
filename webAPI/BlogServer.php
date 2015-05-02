@@ -48,6 +48,7 @@
 			//transfer to json
 				$arr = array();
 				for($i = 0; $i < $j; $i++) {
+					if($blog->getBlogLevel($i) == '2') $blog->setBlogUname($i," ");
 					$arr[$i] = array("mb_id"       => 	$blog->getBlogId($i),
 									 "mb_uaccount" => "".$blog->getBlogUaccount($i)."",
 									 "mb_content"  => "".$blog->getBlogContent($i)."",

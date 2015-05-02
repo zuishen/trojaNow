@@ -69,12 +69,12 @@
 				case "1": {
 					if($last_id == 0)
 						$sql = "SELECT  mb_id, mb_uaccount, mb_content, mb_time, mb_location, mb_degree, mb_weather, mb_level, mb_x, mb_y, usr_name
-								FROM  ( SELECT * FROM micro_blogs WHERE mb_level = 1 ORDER BY mb_time DESC LIMIT ".$list_num." ) A
+								FROM  ( SELECT * FROM micro_blogs ORDER BY mb_time DESC LIMIT ".$list_num." ) A
 								INNER JOIN users B
 								ON B.usr_account = A.mb_uaccount";
 					else
 						$sql = "SELECT  mb_id, mb_uaccount, mb_content, mb_time, mb_location, mb_degree, mb_weather, mb_level, mb_x, mb_y, usr_name
-								FROM  (SELECT * FROM micro_blogs WHERE mb_id < ".$last_id." AND mb_level = 1 ORDER BY mb_time DESC LIMIT ".$list_num.") A
+								FROM  (SELECT * FROM micro_blogs WHERE mb_id < ".$last_id." ORDER BY mb_time DESC LIMIT ".$list_num.") A
 								INNER JOIN users B
 								ON B.usr_account = A.mb_uaccount";
 					break;
