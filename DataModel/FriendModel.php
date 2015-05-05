@@ -72,19 +72,22 @@
 		function add_delete_friend($add_delete, $user_account, $friend_account) {
 			$sql = null;
 			$return = 0;
-
+			
 			//			$sql_all = null;
 			switch ($add_delete) {
 				case "add": {
-					$sql = "INSERT INTO friend_lists VALUES('".$friend_account."', '".$user_account."')";   //list your follows
-					$db = new createdb(SQL_ADDR, USERNAME, USERPASSWD, DATABASE);
-					$mysqli = $db->db_connect();
-					$manul = new dbManul($mysqli);
-					if($manul->db_query("SELECT * FROM friend_lists WHERE follower = '".$user_account."' AND followee = '".$friend_account."'")->num_rows < 1) {
-					if($manul->db_insert($sql)) $return = 1;	
-					}
-					else $return = 2;
-					$db->db_close();
+					if($user_account != $friend_account) {
+						$sql = "INSERT INTO friend_lists VALUES('".$friend_account."', '".$user_account."')";   //list your follows
+						$db = new createdb(SQL_ADDR, USERNAME, USERPASSWD, DATABASE);
+						$mysqli = $db->db_connect();
+						$manul = new dbManul($mysqli);
+						if($manul->db_query("SELECT * FROM friend_lists WHERE follower = '".$user_account."' AND followee = '".$friend_account."'")->num_rows < 1) {
+						if($manul->db_insert($sql)) $return = 1;	
+						}
+						else $return = 2;
+						$db->db_close();
+					} else $return = 3;
+				
 					break;
 				}
 				case "delete": {

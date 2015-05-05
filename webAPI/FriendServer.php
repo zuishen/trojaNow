@@ -84,6 +84,12 @@ class FriendServer {
 							"result" => ""));
 					break;
 				}
+				case 3: {
+					echo json_encode(array("status" => "false",
+							"message" => "can not add yourself!",
+							"result" => ""));
+					break;
+				}
 				default: echo json_encode(array("status" => "false",
 							"message" => "unknow problem!",
 							"result" => ""));
